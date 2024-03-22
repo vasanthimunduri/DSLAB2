@@ -1,0 +1,85 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct node{
+int data;
+struct node*next;
+};
+struct node*createnode(int data) {
+  struct node*newnode=(struct node*)malloc(sizeof(struct node));
+  if (newnode==NULL){
+  printf("memoryallocation failed");
+  exit(1);
+  }
+  newnode->data=data;
+  newnode->next=NULL;
+  return newnode;
+  }
+  void insertatbeg(struct node**head,int data){
+      struct node*newnode=createnode(data);
+       if (*head==NULL){
+       *head=newnode;
+      (*head)->next=*head;
+      }
+      else
+      {
+        struct node*temp=*head;
+         while(temp->next!=*head){
+          temp=temp->next;
+        }
+      temp->next=newnode;
+      newnode->next=*head;
+      *head=newnode;
+      }
+      }
+  void insertatend(struct node**head,int data){
+      struct node*newnode=createnode(data);
+      if(*head==NULL){
+      *head=newnode;
+      (*head)->next=*head;
+        }
+      else{
+    struct node*temp=*head;
+      while(temp->next!=*head){
+  temp=temp->next;
+  }
+  temp->next=newnode;
+  newnode->next=*head;
+  }
+  }
+  void display(struct node*head){
+      if(head==NULL){
+        printf("list is empty");
+      return;
+      }
+      struct node*temp=head;
+      printf("circular singly linked list is");
+      do{
+      printf("%d",temp->data);
+      temp=temp->next;
+  }
+  while(temp!=head);
+  printf("\n");
+  }
+  int main() 
+  {
+  struct node*head=NULL;
+   insertatend(&head,1);
+   insertatend(&head,2);
+   insertatend(&head,3);
+   insertatbeg(&head,4);
+   insertatbeg(&head,5);
+   
+   display(head);
+   
+   
+   struct node*current=head;
+   struct node*temp;
+   do{
+   temp=current;
+   current=current->next;
+   free (temp);
+   }
+   while(current!=head);
+   return 0;
+   }
+   
