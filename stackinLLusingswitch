@@ -1,0 +1,101 @@
+#include <stdio.h>
+#include<stdlib.h>
+struct node
+{
+int data;
+struct node*next;
+}*top=NULL;
+
+void push(int d )
+{
+struct node*temp=malloc(sizeof(struct node));
+temp->data=d;
+temp->next=NULL;
+if(temp==NULL)
+{
+printf("stack is overflow");
+}
+else{
+temp->next=top;
+top=temp;
+return;
+}
+}
+int pop()
+{
+int d;
+struct node*temp;
+if(top==NULL)
+{
+printf("stack is underflow");
+}
+else{
+temp=top;
+top=top->next;
+free(temp);
+temp=NULL;
+return d;
+}
+}
+void display()
+{
+if(top==NULL)
+{
+printf("stack is empty");
+return ;
+}
+struct node*ptr;
+ptr=top;
+while(ptr!=NULL)
+{
+printf(" %d",ptr->data);
+ptr=ptr->next;
+}
+}
+int main ()
+{
+printf("the stack is:");
+push(20);
+push(40);
+display();
+
+int choice ;
+printf("ENTER YOUR CHOICE\n");
+printf("1.push\n");
+printf("2.pop\n");
+printf("3.display\n");
+printf("4.exit\n");
+scanf("%d",&choice);
+switch(choice){
+case 1:
+{
+int data;
+printf("enter the data to be pushed");
+scanf("%d",&data);
+push(data);
+display();
+break;
+}
+
+case 2:
+{
+int poped = pop();
+if(poped!=-1){
+printf("after pop %d\n",poped);
+}
+display();
+break;
+}
+case 3:
+{
+display();
+break;
+}
+case 4:
+exit(0);
+default: ;
+printf("invalid choice\n");
+display();
+break;
+}
+}
