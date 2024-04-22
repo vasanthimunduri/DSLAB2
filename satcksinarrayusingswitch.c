@@ -72,6 +72,7 @@ while(1)
 {
 printf("\n 1.push\n 2.pop\n  3.print the top element\n 4.print all the elements of the stack\n 5.quit\n");
 printf("please enter your choice: ");
+scanf("%d",&choice);
 switch(choice){
 case 1:
 printf("enter the element to be pushed:");
