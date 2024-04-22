@@ -90,6 +90,7 @@ print();
 break ;
 case 5:
 exit(1);
+  break ;
  default:
  printf("wrong choice entered");
  }
